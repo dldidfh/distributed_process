@@ -1,4 +1,4 @@
-from server import CreateDistributeProcessServer
+from distributed_process import DistributeProcess
 import threading
 import time 
 def main():
@@ -8,8 +8,8 @@ def main():
     port3 = 50003
 
     authkey = "authkey"
-    server_manager = CreateDistributeProcessServer()
-    server_manager.make_queue_manager(host, port1, authkey)
+    server_manager = DistributeProcess()
+    # server_manager.make_queue_manager(host, port1, authkey) #just one manager ( run forever)
     server1 = threading.Thread(target=server_manager.make_queue_manager, args=(host, port1, authkey))
     server2 = threading.Thread(target=server_manager.make_queue_manager, args=(host, port2, authkey))
     server3 = threading.Thread(target=server_manager.make_queue_manager, args=(host, port3, authkey))
